@@ -1,6 +1,6 @@
 $(function () {
   // 获取用户列表
-
+  var form = layui.form
   var laypage = layui.laypage
 
 //   当前页码
@@ -64,5 +64,65 @@ var pagesize = 3
     pagesize: pagesize
   });
 
+var index;
+// 点击编辑弹出编辑弹出层
+$('tbody').on('click','button:contains(编辑)', function () {
+    // console.log(123);
+    var data = $(this).data()
+    // console.log(data);
+
+    index = layer.open({
+        type: 1,
+        title: '编辑用户',
+        area: ['500px', '300px'],
+        content: $('#bianji').html()
+      });
+      form.val('fuzhi',data)
+    
+    //   关闭弹出层
+    //   layer.close(index)     
+        
+})
+$('body').on('submit','.layui-form', function(e) {
+    e.preventDefault()
+    var data = form.val('fuzhi')
+    $.ajax({
+        type: 'put',
+        url: 'admin/users',
+        data: data,
+        success: function (res) {
+            // console.log(res);
+            layer.msg(res.message)
+            if (res.status === 0) {
+                layer.close(index)
+                getlist({
+                    // 页码：必须从1开始
+                    pagenum: pagenum,
+                    // 每页显示多少条数据
+                    pagesize: pagesize
+                  });
+            }  //   关闭弹出层
+              
+        }
+    })
+/
+
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 });
+
+

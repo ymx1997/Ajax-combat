@@ -42,7 +42,8 @@
     <script src="../assets/lib/template-web.js"></script>
     <script src="../assets/js/common.js"></script>
     <script src="../assets/js/user/user-list.js"></script>
-
+     
+    <!-- 渲染页面 -->
     <script id="app" type="text/html">
         {{each data val}}
         <tr>
@@ -51,7 +52,14 @@
             <td>{{val.nickname}}</td>
             <td>{{val.email}}</td>
             <td>
-              <button type="button" class="layui-btn layui-btn-xs">
+              <button
+               data-id={{val.id}}
+               data-username={{val.username}}
+               data-nickname={{val.nickname}}
+               data-email={{val.email}}
+               type="button" 
+               class="layui-btn layui-btn-xs"
+               >
                 编辑
               </button>
               <button
@@ -69,6 +77,37 @@
             </td>
           </tr>
           {{/each}}
+    </script>
+
+    <!-- 编辑模板 -->
+    <script id="bianji" type="text/html">
+        <form class="layui-form" action="" lay-filter="fuzhi" style="margin:15px 30px 0 0">
+            <div class="layui-form-item">
+                <label class="layui-form-label">用户名</label>
+                <div class="layui-input-block">
+                  <input type="text" name="username" required  lay-verify="required" placeholder="请输入用户名" autocomplete="off" class="layui-input">
+                </div>
+              </div>
+              <div class="layui-form-item">
+                <label class="layui-form-label">昵称</label>
+                <div class="layui-input-block">
+                  <input type="text" name="nickname" required  lay-verify="required" placeholder="请输入昵称" autocomplete="off" class="layui-input">
+                </div>
+              </div>
+              <div class="layui-form-item">
+                <label class="layui-form-label">邮箱</label>
+                <div class="layui-input-block">
+                  <input type="text" name="email" required  lay-verify="required" placeholder="请输入邮箱" autocomplete="off" class="layui-input">
+                </div>
+              </div>
+              <input type="hidden" name='id'>
+              <div class="layui-form-item">
+                <div class="layui-input-block">
+                  <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+                  <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                </div>
+              </div>
+        </form>
     </script>
   </body>
 </html>
