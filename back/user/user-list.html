@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../assets/lib/layui/css/layui.css" />
+    <link rel="stylesheet" href="../assets/css/user/user-list.css" />
+  </head>
+  <body>
+    <div class="layui-card">
+      <div class="layui-card-header">用户列表</div>
+      <div class="layui-card-body">
+        <table class="layui-table">
+          <colgroup>
+            <col width="10%" />
+            <col width="20%" />
+            <col width="20%" />
+            <col width="20%" />
+            <col />
+          </colgroup>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>账号名称</th>
+              <th>昵称</th>
+              <th>邮箱</th>
+              <th>操作</th>
+            </tr>
+          </thead>
+          <tbody>
+            
+          </tbody>
+        </table>
+        <!-- 分页效果填充位置 -->
+      <div id="articlePage"></div>
+      </div>
+    </div>
+
+    <script src="../assets/lib/jquery.js"></script>
+    <script src="../assets/lib/layui/layui.all.js"></script>
+    <script src="../assets/lib/template-web.js"></script>
+    <script src="../assets/js/common.js"></script>
+    <script src="../assets/js/user/user-list.js"></script>
+
+    <script id="app" type="text/html">
+        {{each data val}}
+        <tr>
+            <td>{{val.id}}</td>
+            <td>{{val.username}}</td>
+            <td>{{val.nickname}}</td>
+            <td>{{val.email}}</td>
+            <td>
+              <button type="button" class="layui-btn layui-btn-xs">
+                编辑
+              </button>
+              <button
+                type="button"
+                class="layui-btn layui-btn-xs layui-btn-danger"
+              >
+                删除
+              </button>
+              <button
+                type="button"
+                class="layui-btn layui-btn-xs layui-btn-normal"
+              >
+                重置密码
+              </button>
+            </td>
+          </tr>
+          {{/each}}
+    </script>
+  </body>
+</html>
