@@ -1,4 +1,5 @@
 $(function () {
+  localStorage.setItem('mytoken','Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiaWQiOjEsImlhdCI6MTYwMjY4MjExOCwiZXhwIjoxNjAyNjg1NzE4fQ.kXKah2Q-vI4H3BNFhOi17hJl4nbvDhCtyQQrDZo1J3s')
   // 获取用户列表
   var form = layui.form
   var laypage = layui.laypage
@@ -83,9 +84,10 @@ $('tbody').on('click','button:contains(编辑)', function () {
     //   layer.close(index)     
         
 })
-$('body').on('submit','.layui-form', function(e) {
+$('body').on('submit','#bj', function(e) {
     e.preventDefault()
     var data = form.val('fuzhi')
+    // console.log(data);
     $.ajax({
         type: 'put',
         url: 'admin/users',
@@ -94,21 +96,62 @@ $('body').on('submit','.layui-form', function(e) {
             // console.log(res);
             layer.msg(res.message)
             if (res.status === 0) {
-                layer.close(index)
+                // layer.close(index)
                 getlist({
                     // 页码：必须从1开始
                     pagenum: pagenum,
                     // 每页显示多少条数据
                     pagesize: pagesize
                   });
+                  layer.close(index)
             }  //   关闭弹出层
               
         }
     })
-/
+
 
 })
 
+
+// 重置密码
+var num;
+var id = 0;
+$('tbody').on('click','button:contains(重置密码)', function () {
+    num = layer.open({
+        type: 1,
+        title: '重置密码',
+        area: ['500px', '300px'],
+        content: $('#chongzhi').html()
+      });
+      id = $(this).data('id')
+      
+})
+
+$('body').on('submit','#xiugai', function (e) {
+  e.preventDefault()
+  form.verify({
+            pass: [
+                /^[\S]{6,12}$/
+                ,'密码必须6到12位，且不能出现空格'
+              ] ,
+            cc: function (val) {
+                var nn = $('#zz').val().trim()
+                if (val !== nn) return '密码不一致'
+            }
+        })
+        var word = $(' #xiugai input[name=password]').val()
+        console.log(id);
+        $.ajax({
+            type:'put',
+            url: 'admin/users/' + id,
+            data: 
+              password: word
+            },
+            success: function (res) {
+               console.log(res);
+            }
+        })
+})
 
 
 
