@@ -41,6 +41,7 @@
             </table>
         </div>
     </div>
+    <!-- 链接列表 -->
     <script type="text/html" id="tpl-links">
         {{each data item}}
         <tr>
@@ -54,13 +55,14 @@
             <td>{{item.linkurl}}</td>
             <td>{{item.linkdesc}}</td>
             <td>
-                <button type="button" class="layui-btn layui-btn-xs" data-id="{{item.id}}">编辑</button>
-                <button type="button" class="layui-btn layui-btn-danger layui-btn-xs" data-id="{{item.id}}">删除</button>
+                <button type="button" class="layui-btn layui-btn-xs btn-edit" data-id="{{item.id}}">编辑</button>
+                <button type="button" class="layui-btn layui-btn-danger layui-btn-xs btn-del" data-id="{{item.id}}">删除</button>
             </td>
         </tr>
         {{/each}}
     </script>
 
+    <!-- 添加链接 -->
     <script type="text/html" id="tpl-add">
         <form class="layui-form addform" action="">
             <div class="layui-form-item">
@@ -94,6 +96,45 @@
                 <div class="layui-input-block">
                   <button class="layui-btn" lay-submit lay-filter="formDemo">提交</button>
                   <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                </div>
+              </div>
+        </form>
+    </script>
+
+    <!-- 编辑链接 -->
+    <script type="text/html" id="tpl-edit">
+        <form class="layui-form editform" action="" lay-filter="editform">
+            <div class="layui-form-item">
+                <label class="layui-form-label">链接名称</label>
+                <div class="layui-input-block">
+                  <input type="text" name="linkname" value="{{linkname}}" required  lay-verify="required" placeholder="请输入链接名称" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">链接地址</label>
+                <div class="layui-input-block">
+                  <input type="text" name="linkurl" value="{{linkurl}}" required  lay-verify="required" placeholder="请输入链接地址" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">链接描述</label>
+                <div class="layui-input-block">
+                  <input type="text" name="linkdesc" value="{{linkdesc}}" required  lay-verify="required" placeholder="请输入连接描述" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <input type="file" style="display:none" class="addpic" name="linkicon">
+                    <button type="button" class="layui-btn layui-btn-sm addimage">
+                        <i class="layui-icon layui-icon-upload"></i>  
+                        上传图片</button>
+                    <img src="" alt="" class="prev">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                  <button class="layui-btn" lay-submit lay-filter="formDemo">提交</button>
+                  <button type="reset" class="layui-btn layui-btn-primary reset">重置</button>
                 </div>
               </div>
         </form>
