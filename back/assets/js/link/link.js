@@ -12,7 +12,7 @@ $(function () {
     }
     getlinks();
 
-    // -----------------------添加链接--------------------
+    // --------------------------------------添加链接--------------------------------
     // 弹出层
     let addindex;
     $('.addlink').on('click', function () {
@@ -58,28 +58,35 @@ $(function () {
         })
     })
 
-    // ------------------编辑链接-----------------
+    // --------------------------------------编辑链接---------------------------
     let editindex;
     let id;
     // 点击编辑按钮弹出链接信息
     $('body').on('click', '.btn-edit', function () {
         id = $(this).data('id');
-        $.ajax({
-            type: 'GET',
-            url: 'admin/links/' + id,
-            success: function (res) {
-                // console.log(res);
-                // 完成数据回填
-                let html = template('tpl-edit', res.data);
-                // 弹出编辑链接信息框
-                editindex = layer.open({
-                    title: '编辑友情链接',
-                    type: 1,
-                    content: html,
-                    area: ['500px', '350px']
-                });
-            }
-        })
+        function geteditlink() {
+            $.ajax({
+                type: 'GET',
+                url: 'admin/links/' + id,
+                success: function (res) {
+                    // console.log(res);
+                    // 完成数据回填
+                    let html = template('tpl-edit', res.data);
+                    // 弹出编辑链接信息框
+                    editindex = layer.open({
+                        title: '编辑友情链接',
+                        type: 1,
+                        content: html,
+                        area: ['500px', '350px']
+                    });
+                }
+            })
+        }
+        geteditlink()
+    })
+    // 重置按钮  重置修改前信息 
+    $('body').on('click', '.reset', function () {
+        geteditlink()
     })
     // 提交编辑后的数据
     $('body').on('submit', '.editform', function (e) {
@@ -102,7 +109,7 @@ $(function () {
         })
     });
 
-    // ------------删除-------------
+    // --------------------------------删除-------------------------
     $('body').on('click', '.btn-del', function () {
         let delid = $(this).data('id');
         layer.confirm('确认删除吗?', { icon: 3, title: '提示' }, function (index) {
@@ -123,4 +130,15 @@ $(function () {
             layer.close(index);
         });
     })
+
+    // 定义链接验证规则
+    let form = layui.form;
+    form.verify({
+        url: function (value, item) { //value：表单的值、item：表单的DOM对象
+            var strRegex = /^([hH][tT]{2}[pP]:\/\/|[hH][tT]{2}[pP][sS]:\/\/|www\.)(([A-Za-z0-9-~]+)\.)+([A-Za-z0-9-~\/])+$/;
+            if (!new RegExp(strRegex).test(value)) {
+                return '链接格式不正确';
+            }
+        }
+    });
 })
