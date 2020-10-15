@@ -156,7 +156,29 @@ $('body').on('submit','#xiugai', function (e) {
 
 
 
-
+// 删除
+$('tbody').on('click','button:contains(删除)', function () {
+  var mm = $(this).data('id')
+  layer.confirm('确定要删除?', function(index){
+      $.ajax({
+        type: 'delete',
+        url: 'admin/users/' + mm,
+        success: function (res) {
+          layer.msg(res.message)
+          if (res.status === 0) {
+            getlist({
+              // 页码：必须从1开始
+              pagenum: pagenum,
+              // 每页显示多少条数据
+              pagesize: pagesize
+            });
+          }
+        }
+      })
+    
+    layer.close(index);
+  }); 
+})
 
 
 

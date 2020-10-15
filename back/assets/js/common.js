@@ -2,7 +2,6 @@ $(function () {
   /*
     通用的接口调用设置
   */
- localStorage.setItem('mytoken','Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiaWQiOjEsImlhdCI6MTYwMjY4MjExOCwiZXhwIjoxNjAyNjg1NzE4fQ.kXKah2Q-vI4H3BNFhOi17hJl4nbvDhCtyQQrDZo1J3s')
 
   // var baseURL = 'http://ajax.frontend.itheima.net/'
   // var baseURL = 'http://www.liulongbin.top:3007/'

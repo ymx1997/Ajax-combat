@@ -23,7 +23,7 @@ $('.layui-form').submit(function (e) {  //TODO 添加事件
             if (res.status === 0) {
                 layer.msg(res.message);  //TOdo 成功的提示
                 localStorage.setItem('mytoken', res.token)
-                location.href = './index.html'
+                location.href = './user/user-list.html'
             } else {
                 layer.msg(res.message)  //TOdo 失败的提示
             }
