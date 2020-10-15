@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>后台轮播图</title>
+    <link rel="stylesheet" href="/Ajax-combat/back/assets/lib/layui/css/layui.css">
+    <link rel="stylesheet" href="/Ajax-combat/back/assets/css/swiper.css">
+</head>
+
+<body>
+    <div class="mySwiper">
+        <div class="layui-card">
+            <div class="layui-card-header">
+                轮播图管理
+                <form class="layui-form swiper-form" action="">
+                    <input type="file" name="swipers" id="" style="display: none;" multiple="multiple">
+                    <!-- <button class="layui-btn" lay-submit lay-filter="formDemo" style="display: none;">提交表单</button> -->
+                </form>
+                <button type="button" class="layui-btn  layui-btn-normal">上传图片
+                    <i class="layui-icon layui-icon-upload"></i>
+                </button>
+            </div>
+            <div class="layui-card-body">
+                <table class="layui-table">
+                    <colgroup>
+                        <col width="10%">
+                        <col width="20%">
+                        <col width="30%">
+                        <col width="20%">
+                        <col>
+                    </colgroup>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>图片预览</th>
+                            <th>图片路径</th>
+                            <th>状态</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- 底部 -->
+        <footer>
+            © www.itheima.com - 黑马程序员
+        </footer>
+    </div>
+
+    <script src="/Ajax-combat/back/assets/lib/jquery.js"></script>
+    <script src="/Ajax-combat/back/assets/lib/template-web.js"></script>
+    <script src="/Ajax-combat/back/assets/lib/layui/layui.all.js"></script>
+    <script src="/Ajax-combat/back/assets/js/common.js"></script>
+    <!-- <script src="../assets/js/swiper.js"></script> -->
+    <script src="/Ajax-combat/back/assets/js/swiper.js"></script>
+
+    <!-- 轮播图信息渲染 -->
+    <script type="text/html" id='tpl-swiper'>
+        {{each data item}}
+        <tr>
+            <td>{{item.id}}</td>
+            <!-- <td>{{item.swiperimg}}</td> -->
+            <td>
+                <img src="http://localhost:8888/uploads/{{item.swiperimg}}" alt="">
+            </td>
+            <td>{{item.swiperimg}}</td>
+            <td>
+                {{if item.swiperstatus == 1}}
+                <span class="yes layui-bg-green layui-badge" data-status={{item.swiperstatus}} data-id='{{item.id}}'>√</span>
+                {{else if item.swiperstatus == 2}}
+                <span class="no  layui-badge layui-bg-black" data-status={{item.swiperstatus}} data-id='{{item.id}}'>×</span>
+                {{/if}}
+            </td>
+            <td>
+                <button type="button" class="layui-btn layui-btn-danger  layui-btn-xs" data-id='{{item.id}}'>删除</button>
+            </td>
+        </tr>
+        {{/each}}
+    </script>
+</body>
+
+</html>
