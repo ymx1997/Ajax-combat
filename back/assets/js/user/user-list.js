@@ -126,19 +126,20 @@ $('tbody').on('click','button:contains(重置密码)', function () {
       id = $(this).data('id')
       
 })
+form.verify({
+  pass: [
+      /^[\S]{6,12}$/
+      ,'密码必须6到12位，且不能出现空格'
+    ] ,
+  cc: function (val) {
+      var nn = $('#zz').val().trim()
+      if (val !== nn) return '密码不一致'
+  }
+})
 
 $('body').on('submit','#xiugai', function (e) {
   e.preventDefault()
-  form.verify({
-            pass: [
-                /^[\S]{6,12}$/
-                ,'密码必须6到12位，且不能出现空格'
-              ] ,
-            cc: function (val) {
-                var nn = $('#zz').val().trim()
-                if (val !== nn) return '密码不一致'
-            }
-        })
+  
         var word = $(' #xiugai input[name=password]').val()
         console.log(id);
         $.ajax({
