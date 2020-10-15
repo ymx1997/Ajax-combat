@@ -41,7 +41,7 @@
             <td>{{$value.id}}</td>
             <td>{{$value.uname}}</td>
             <td>{{$value.content}}</td>
-            <td>{{$value.cdate}}</td>
+            <td>{{$value.cdate | dateFormat}}</td>
             <td>
                 <button data-id="{{$value.id}}" type="button" class="layui-btn layui-btn-xs layui-btn-danger delete">删除</button>
             </td>
