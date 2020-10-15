@@ -1,0 +1,21 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.image {
+    background-color: #23262E;
+    text-align: center;
+}
+
+.addform,
+.editform {
+    margin: 15px 30px 0 0;
+}
+
+.prev {
+    width: 40px;
+    height: 30px;
+    margin-left: 30px;
+}
