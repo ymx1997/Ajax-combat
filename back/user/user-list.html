@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>用户信息列表</title>
+    <link rel="stylesheet" href="../assets/lib/layui/css/layui.css" />
+    <link rel="stylesheet" href="../assets/css/user/user-list.css" />
+  </head>
+  <body>
+    <div class="layui-card">
+      <div class="layui-card-header">用户列表</div>
+      <div class="layui-card-body">
+        <table class="layui-table">
+          <colgroup>
+            <col width="10%" />
+            <col width="20%" />
+            <col width="20%" />
+            <col width="20%" />
+            <col />
+          </colgroup>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>账号名称</th>
+              <th>昵称</th>
+              <th>邮箱</th>
+              <th>操作</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+        <!-- 分页效果填充位置 -->
+        <div id="articlePage"></div>
+      </div>
+    </div>
+
+    <script src="../assets/lib/jquery.js"></script>
+    <script src="../assets/lib/layui/layui.all.js"></script>
+    <script src="../assets/lib/template-web.js"></script>
+    <script src="../assets/js/common.js"></script>
+    <script src="../assets/js/user/user-list.js"></script>
+
+    <!-- 渲染页面 -->
+    <script id="app" type="text/html">
+      {{each data val}}
+      <tr>
+        <td>{{val.id}}</td>
+        <td>{{val.username}}</td>
+        <td>{{val.nickname}}</td>
+        <td>{{val.email}}</td>
+        <td>
+          <button
+            data-id="{{val.id}}"
+            data-username="{{val.username}}"
+            data-nickname="{{val.nickname}}"
+            data-email="{{val.email}}"
+            type="button"
+            class="layui-btn layui-btn-xs"
+          >
+            编辑
+          </button>
+          <button
+            type="button"
+            data-id="{{val.id}}"
+            class="layui-btn layui-btn-xs layui-btn-danger"
+          >
+            删除
+          </button>
+
+          <button
+            type="button"
+            data-id="{{val.id}}"
+            class="layui-btn layui-btn-xs layui-btn-normal"
+          >
+            重置密码
+          </button>
+        </td>
+      </tr>
+      {{/each}}
+    </script>
+
+    <!-- 编辑模板 -->
+    <script id="bianji" type="text/html">
+      <form
+        class="layui-form"
+        id="bj"
+        action=""
+        lay-filter="fuzhi"
+        style="margin:15px 30px 0 0"
+      >
+        <div class="layui-form-item">
+          <label class="layui-form-label">用户名</label>
+          <div class="layui-input-block">
+            <input
+              type="text"
+              name="username"
+              required
+              disabled
+              lay-verify="required"
+              placeholder="请输入用户名"
+              autocomplete="off"
+              class="layui-input"
+            />
+          </div>
+        </div>
+        <div class="layui-form-item">
+          <label class="layui-form-label">昵称</label>
+          <div class="layui-input-block">
+            <input
+              type="text"
+              name="nickname"
+              required
+              lay-verify="required"
+              placeholder="请输入昵称"
+              autocomplete="off"
+              class="layui-input"
+            />
+          </div>
+        </div>
+        <div class="layui-form-item">
+          <label class="layui-form-label">邮箱</label>
+          <div class="layui-input-block">
+            <input
+              type="text"
+              name="email"
+              required
+              lay-verify="required"
+              placeholder="请输入邮箱"
+              autocomplete="off"
+              class="layui-input"
+            />
+          </div>
+        </div>
+        <input type="hidden" name="id" />
+        <div class="layui-form-item">
+          <div class="layui-input-block">
+            <button class="layui-btn" lay-submit lay-filter="formDemo">
+              立即提交
+            </button>
+          </div>
+        </div>
+      </form>
+    </script>
+
+    <!-- 重置密码 -->
+    <script id="chongzhi" type="text/html">
+      <form
+        class="layui-form"
+        id="xiugai"
+        action=""
+        lay-filter="mima"
+        style="margin:15px 30px 0 0"
+      >
+        <div class="layui-form-item">
+          <label class="layui-form-label">密码</label>
+          <div class="layui-input-block">
+            <input
+              type="password"
+              id="zz"
+              name="password"
+              required
+              lay-verify="required|pass"
+              placeholder="请输入用户名"
+              autocomplete="off"
+              class="layui-input"
+            />
+          </div>
+        </div>
+        <div class="layui-form-item">
+          <label class="layui-form-label">确认密码</label>
+          <div class="layui-input-block">
+            <input
+              type="password"
+              name="word"
+              required
+              lay-verify="required|pass|cc"
+              placeholder="请输入昵称"
+              autocomplete="off"
+              class="layui-input"
+            />
+          </div>
+        </div>
+
+        <div class="layui-form-item">
+          <div class="layui-input-block">
+            <button class="layui-btn" lay-submit lay-filter="formDemo">
+              立即提交
+            </button>
+            <button type="reset" class="layui-btn layui-btn-primary">
+              重置
+            </button>
+          </div>
+        </div>
+      </form>
+    </script>
+  </body>
+</html>
