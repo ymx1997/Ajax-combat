@@ -102,15 +102,25 @@ $(function () {
         })
     });
 
-    // $.ajax({
-    //     url: 'api/login',
-    //     type: 'POST',
-    //     data: {
-    //         username: 'admin',
-    //         password: 'admin'
-    //     },
-    //     success: function (res) {
-    //         console.log(res);
-    //     }
-    // })
+    // ------------删除-------------
+    $('body').on('click', '.btn-del', function () {
+        let delid = $(this).data('id');
+        layer.confirm('确认删除吗?', { icon: 3, title: '提示' }, function (index) {
+
+            $.ajax({
+                type: 'DELETE',
+                url: 'admin/links/' + delid,
+                success: function (res) {
+                    // console.log(res);
+                    layer.msg(res.message);
+                    if (res.status === 0) {
+
+                        getlinks();
+                    }
+                }
+            })
+
+            layer.close(index);
+        });
+    })
 })
