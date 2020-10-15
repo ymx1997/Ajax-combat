@@ -2,6 +2,8 @@ $(function () {
   /*
     通用的接口调用设置
   */
+ localStorage.setItem('mytoken','Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiaWQiOjEsImlhdCI6MTYwMjY4MjExOCwiZXhwIjoxNjAyNjg1NzE4fQ.kXKah2Q-vI4H3BNFhOi17hJl4nbvDhCtyQQrDZo1J3s')
+
   // var baseURL = 'http://ajax.frontend.itheima.net/'
   // var baseURL = 'http://www.liulongbin.top:3007/'
   var baseURL = 'http://localhost:8888/'
@@ -33,7 +35,7 @@ $(function () {
     option.complete = function (res) {
       // 完成请求后，结束进度条
       window.NProgress && window.NProgress.done()
-      // 处理失败的情况
+      // 处理失败的情况s
       if (res.responseJSON && res.responseJSON.status === 401 && res.responseJSON.message === '身份认证失败！') {
         // 把无效的token清除
         localStorage.removeItem('mytoken')

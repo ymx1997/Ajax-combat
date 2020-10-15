@@ -1,5 +1,4 @@
 $(function () {
-  localStorage.setItem('mytoken','Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiaWQiOjEsImlhdCI6MTYwMjY4MjExOCwiZXhwIjoxNjAyNjg1NzE4fQ.kXKah2Q-vI4H3BNFhOi17hJl4nbvDhCtyQQrDZo1J3s')
   // 获取用户列表
   var form = layui.form
   var laypage = layui.laypage
@@ -12,6 +11,7 @@ var pagesize = 3
 
 // 获取用户信息
   function getlist(param) {
+
     $.ajax({
       type: "get",
       url: "admin/users",
@@ -115,7 +115,7 @@ $('body').on('submit','#bj', function(e) {
 
 // 重置密码
 var num;
-var id = 0;
+var id;
 $('tbody').on('click','button:contains(重置密码)', function () {
     num = layer.open({
         type: 1,
@@ -144,11 +144,11 @@ $('body').on('submit','#xiugai', function (e) {
         $.ajax({
             type:'put',
             url: 'admin/users/' + id,
-            data: 
-              password: word
-            },
+            data: {password: word},
             success: function (res) {
-               console.log(res);
+              //  console.log(res);
+              layer.msg(res.message)
+              if (res.status === 0) layer.close(num)
             }
         })
 })
