@@ -15,11 +15,12 @@
             <div class="layui-card-header">
                 轮播图管理
                 <form class="layui-form swiper-form" action="">
-                    <i class="layui-icon layui-icon-upload"></i>
-                    <input type="file" name="" id="" style="display: none;" multiple="multiple">
-                    <button class="layui-btn" lay-submit lay-filter="formDemo">上传图片</button>
-                    <!-- <button type="button" class="layui-btn  layui-btn-normal">上传图片</button> -->
+                    <input type="file" name="swipers" id="" style="display: none;" multiple="multiple">
+                    <!-- <button class="layui-btn" lay-submit lay-filter="formDemo" style="display: none;">提交表单</button> -->
                 </form>
+                <button type="button" class="layui-btn  layui-btn-normal">上传图片
+                    <i class="layui-icon layui-icon-upload"></i>
+                </button>
             </div>
             <div class="layui-card-body">
                 <table class="layui-table">
@@ -70,11 +71,14 @@
             </td>
             <td>{{item.swiperimg}}</td>
             <td>
-                <span class="yes layui-bg-green layui-badge">√</span>
-                <span class="no  layui-badge layui-bg-black">×</span>
+                {{if item.swiperstatus == 1}}
+                <span class="yes layui-bg-green layui-badge" data-status={{item.swiperstatus}} data-id='{{item.id}}'>√</span>
+                {{else if item.swiperstatus == 2}}
+                <span class="no  layui-badge layui-bg-black" data-status={{item.swiperstatus}} data-id='{{item.id}}'>×</span>
+                {{/if}}
             </td>
             <td>
-                <button type="button" class="layui-btn layui-btn-danger  layui-btn-xs">删除</button>
+                <button type="button" class="layui-btn layui-btn-danger  layui-btn-xs" data-id='{{item.id}}'>删除</button>
             </td>
         </tr>
         {{/each}}

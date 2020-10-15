@@ -1,5 +1,4 @@
 .mySwiper .layui-card {
-  position: relative;
   margin: 8px;
 }
 .mySwiper .layui-card-header {
@@ -8,18 +7,19 @@
   align-items: center;
 }
 .mySwiper .layui-card-header button {
+  position: relative;
   width: 120px;
-  padding: 0 18px;
+  padding: 0 10px 0 15px;
 }
 .mySwiper .layui-icon-upload {
   position: absolute;
-  right: 105px;
+  right: 88px;
   font-size: 16px;
   color: #fff;
 }
-
-.mySwiper .layui-card-body tbody span.no {
-  display: none;
+.mySwiper .layui-card-body tbody span {
+  text-align: center;
+  cursor: pointer;
 }
 
 /* 底部 */
